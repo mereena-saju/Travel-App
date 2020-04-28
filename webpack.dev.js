@@ -12,6 +12,9 @@ module.exports = {
         libraryTarget: 'var',
         library: 'Client'
     },
+    node: {
+        fs: "empty"
+     },
     // devServer: {
     //     port: 8080
     // },

@@ -1,16 +1,11 @@
-import { checkForName } from './js/nameChecker'
-import { handleSubmit } from './js/formHandler'
-import './styles/resets.scss'
-import './styles/header.scss'
-import './styles/form.scss'
-import './styles/footer.scss'
-import './styles/base.scss'
+import { getGeoCode } from './js/app'
+import { calculateTimeDiff } from './js/diffTime'
 
-console.log(checkForName);
+import './styles/style.scss'
 
-alert("I EXIST")
-console.log("CHANGE!!");
+//alert("I EXIST")
+
 export {
-    checkForName,
-    handleSubmit
+    getGeoCode,
+    calculateTimeDiff
 }

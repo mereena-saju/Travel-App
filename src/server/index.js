@@ -1,3 +1,5 @@
+
+const fetch = require("node-fetch");
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -6,14 +8,6 @@ const express = require('express')
 const mockAPIResponse = require('./mockAPI.js')
 var bodyParser = require('body-parser')
 var cors = require('cors')
-
-var aylien = require('aylien_textapi');
-
-// set aylien API credentias
-var textapi = new aylien({
-  application_id: process.env.API_ID,
-  application_key: process.env.API_KEY
-});
 
 const app = express()
 
@@ -27,7 +21,18 @@ app.use(bodyParser.urlencoded({
 
 app.use(express.static('dist'))
 
-console.log(__dirname)
+//console.log(__dirname)
+
+//-----------------------------------------------------------------------------------------------------
+//GLOBAL VARIABLES
+const pixApi_key = process.env.PIX_API_KEY;
+const pixBaseUrl = process.env.pixBaseUrl;
+const username = process.env.USRNAME;
+const api_key = process.env.API_KEY;
+const geoAddressBaseUrl = process.env.geoAddressBaseUrl;
+const weatherBaseUrlCurrent = process.env.weatherBaseUrlCurrent;
+const weatherBaseUrlForecast = process.env.weatherBaseUrlForecast;
+projectData = {};
 
 app.get('/', function (req, res) {
   res.sendFile('dist/index.html')
@@ -39,23 +44,68 @@ app.listen(8081, function () {
   console.log('Example app listening on port 8081!')
 })
 
-app.post('/sentiment', function (req, res) {
-  textapi.sentiment({ url: req.body.url }, (error, response) => {
-    if (error === null) {
-      projectData = {
-        "polarity": response.polarity,
-        "subjectivity": response.subjectivity,
-        "polarityConfidence": response.polarity_confidence,
-        "subjectivityConfidence": response.subjectivity_confidence
-      };
-      res.send(projectData);
-      console.log(projectData);
-    } else {
-      console.log(error, "Error");
-    }
-  });
-});
 
 app.get('/test', function (req, res) {
   res.send(mockAPIResponse)
 })
+
+
+
+
+//GEONAMES API
+let geoAddress = {};
+app.post('/getGeoAddress', function (req, res) {
+  let city = req.body.city;
+  let url = geoAddressBaseUrl + city + '&username=' + username;
+  (async () => {
+    const geo = await get(url);
+    res.send(geo);
+  })()
+});
+
+//WEATHERBIT CURRENT API
+let currentWeather = {};
+app.post('/getCurrent', function (req, res) {
+  var lat = req.body.lat;
+  var lng = req.body.lng;
+  let url = weatherBaseUrlCurrent + api_key + '&lat=' + lat + '&lon=' + lng;
+  (async () => {
+    const currentWeather = await get(url);
+    res.send(currentWeather);
+  })()
+});
+
+//WEATHERBIT FORECAST API
+let forecastWeather = {};
+app.post('/getForecast', function (req, res) {
+  var lat = req.body.lat;
+  var lng = req.body.lng;
+  let url = weatherBaseUrlForecast + api_key + '&lat=' + lat + '&lon=' + lng;
+  (async () => {
+    const forecastWeather = await get(url);
+    res.send(forecastWeather);
+  })()
+});
+
+//PIXABAY API
+let data = {};
+app.post('/getPixabay', function (req, res) {
+  let q = req.body.query;
+  let url = pixBaseUrl + pixApi_key + '&q=' + q + '&image_type=photo';
+  (async () => {
+    const p = await get(url);
+    data = { "img": p.hits[0].pageURL };
+    res.send(p);
+  })()
+});
+
+//ASYNC GET
+const get = async (url = '') => {
+  const pix = await fetch(url);
+  try {
+    let json = await pix.json();
+    return json;
+  } catch (error) {
+    console.log(error);
+  }
+}

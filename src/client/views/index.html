@@ -1,53 +1,53 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title>Test</title>
-        <!-- <link rel="stylesheet" href="/styles/resets.scss">
-        <link rel="stylesheet" href="/styles/base.scss">
-        <link rel="stylesheet" href="/styles/header.scss">
-        <link rel="stylesheet" href="/styles/form.scss"> -->
-        <!-- <link rel="stylesheet" href="/styles/footer.scss"> -->
-    </head>
 
-    <body>
+<head>
+    <meta charset="utf-8">
+    <title>Travel App</title>
+    <!-- <link rel="stylesheet" href="/styles/style.scss"> -->
+</head>
 
-        <header>
-            <div class="">
-                Logo
+<body>
+    <div id="app">
+        <div class="holder headline">
+            Travel Planner
+        </div>
+        <div class="section">
+            <div class="holder">
+                <label for="zip">My Trip to: </label>&nbsp;&nbsp;
+                <input type="text" id="zip" placeholder=" Enter City here" required>
             </div>
-            <div class="">
-                navigation
+            <div class="holder">
+                <label>Departure Date: </label>&nbsp;&nbsp;
+                <input type="date" id="depDate" placeholder="dd-mm-yyyy" required></input>
             </div>
-        </header>
+            <div class="holder">
+                <label>Return Date: </label>&nbsp;&nbsp;
+                <input type="date" id="retDate" placeholder="dd-mm-yyyy" required></input>
+            </div>
+            <button id="generate" type="submit">Save Trip </button>
+        </div>
+        <div id="entryTitle" class="title"></div>
+        <div id="entryTable">
+            <img id="pic"></img>
+            <div id="content">
+                <div id="city"></div>
+                <div id="startdate"></div>
+                <div id="diffDays"></div>
+                <div id="temp"></div>
+                <div id="daysTrip"></div>
+            </div>
+        </div>
+    </div>
 
-        <main>
-            <section>
-                <form class="" onsubmit="return Client.handleSubmit(event)">
-                    <div>Enter your URL here:</div>
-                    <input id="name" type="text" name="input" value="" onblur="onBlur()" placeholder="Name">
-                    <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
-                </form>
-            <section>
+    </div>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js');
+            });
+        }
+    </script>
+</body>
 
-            <section>
-                <strong>Form Results:</strong>
-                <div id="pol"></div>
-                <div id="sub"></div>
-                <div id="polCon"></div>
-                <div id="subCon"></div>
-            </section>
-        </main>
-
-        <footer>
-            <p>This is a footer</p>
-        </footer>
-        <script>
-            if ('serviceWorker' in navigator) {
-                window.addEventListener('load', () => {
-                    navigator.serviceWorker.register('/service-worker.js');
-                });
-            }
-        </script>
-    </body>
 </html>
