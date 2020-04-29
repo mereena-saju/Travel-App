@@ -1,8 +1,8 @@
-##Travel App
+## Travel App
 
 ### Description
 
-The goal of this project is to build out a Travel App that obtains a desired trip location & date from the user, and displays weather and an image of the location using information obtained from external APIs.
+The goal of this project is to build out a Travel App that obtains a desired trip location, departure and return date from the user, and displays weather and an image of the location using information obtained from external APIs.The user is also shown information like the number of days for the trip to start and also the total number of days in the trip.
 
 ### Pre-Requisites
 

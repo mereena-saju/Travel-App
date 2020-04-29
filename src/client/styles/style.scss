@@ -9,7 +9,7 @@ body{
     grid-auto-columns: 90%;
     height:100vh; 
     justify-content: center;
-    grid-gap: 1em;
+    // grid-gap: 1em;
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
     background-size: cover;
@@ -54,7 +54,8 @@ body{
 #content{
     display: grid;
     grid-gap: 1em;
-    grid-auto-rows: 10%;
+    grid-auto-rows: 12%;
+    padding:2%;
 }
 #temp{
 

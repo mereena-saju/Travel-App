@@ -26,12 +26,12 @@ app.use(express.static('dist'))
 //-----------------------------------------------------------------------------------------------------
 //GLOBAL VARIABLES
 const pixApi_key = process.env.PIX_API_KEY;
-const pixBaseUrl = process.env.pixBaseUrl;
+const pixBaseUrl = 'https://pixabay.com/api/?key=';
 const username = process.env.USRNAME;
 const api_key = process.env.API_KEY;
-const geoAddressBaseUrl = process.env.geoAddressBaseUrl;
-const weatherBaseUrlCurrent = process.env.weatherBaseUrlCurrent;
-const weatherBaseUrlForecast = process.env.weatherBaseUrlForecast;
+const geoAddressBaseUrl = 'http://api.geonames.org/geoCodeAddressJSON?q=';
+const weatherBaseUrlCurrent = 'http://api.weatherbit.io/v2.0/current?key=';
+const weatherBaseUrlForecast = 'http://api.weatherbit.io/v2.0/forecast/daily?key=';
 projectData = {};
 
 app.get('/', function (req, res) {

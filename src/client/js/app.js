@@ -6,8 +6,9 @@ var data = {
     diffDays: '',
     daysTrip: ''
 }
-
+// Calendar daterestriction
 var today = new Date();
+today.setDate(today.getDate()+1);
 var minDate = getMinMax(today);
 var result = new Date(minDate);
 result.setDate(result.getDate() + 16);
