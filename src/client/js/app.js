@@ -6,18 +6,6 @@ var data = {
     diffDays: '',
     daysTrip: ''
 }
-// Calendar daterestriction
-var today = new Date();
-today.setDate(today.getDate()+1);
-var minDate = getMinMax(today);
-var result = new Date(minDate);
-result.setDate(result.getDate() + 16);
-let maxDate = getMinMax(result);
-
-document.getElementById('depDate').setAttribute("min", minDate);
-document.getElementById('depDate').setAttribute("max", maxDate);
-document.getElementById('retDate').setAttribute("min", minDate);
-document.getElementById('retDate').setAttribute("max", maxDate);
 
 function getMinMax(d) {
     var dd = d.getDate();
@@ -53,17 +41,7 @@ async function getGeoCode() {
     })
 
 }
-//ASYNC GET
-const retrieveData = async (url = '') => {
-    const request = await fetch(url);
-    try {
-        const allData = await request.json();
-        return allData;
-    }
-    catch (error) {
-        console.log("error", error);
-    }
-}
+
 // Async POST
 const postData = async (url = '', data = {}) => {
     const resp = await fetch(url, {
@@ -125,6 +103,19 @@ const updateUI = async () => {
 
 
 document.addEventListener("DOMContentLoaded", (event) => {
+    // Calendar daterestriction
+    var today = new Date();
+    today.setDate(today.getDate()+1);
+    var minDate = getMinMax(today);
+    var result = new Date(minDate);
+    result.setDate(result.getDate() + 16);
+    var maxDate = getMinMax(result);
+
+    document.getElementById('depDate').setAttribute("min", minDate);
+    document.getElementById('depDate').setAttribute("max", maxDate);
+    document.getElementById('retDate').setAttribute("min", minDate);
+    document.getElementById('retDate').setAttribute("max", maxDate);
+
     document.getElementById('generate').addEventListener('click', getGeoCode);
 });
 
