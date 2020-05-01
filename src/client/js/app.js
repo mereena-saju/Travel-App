@@ -54,8 +54,7 @@ const postData = async (url = '', data = {}) => {
     });
 
     try {
-        const newData = await resp.json();
-        return newData
+        return await resp.json();
     } catch (error) {
         console.log("error", error);
     }
