@@ -82,7 +82,7 @@ input{
     border-radius: 4px;
 }
 
-button{
+.generate{
     width: 10%;
     height: 50px;
     background: #3b4a6b;
@@ -95,6 +95,10 @@ button{
     margin: 2% 0% 2% 0%;
     border-radius: 4px;
     
+}
+.generate:hover{
+    color: #3b4a6b;
+    background: #ffff;
 }
 h1{
     font-size: 36px;
